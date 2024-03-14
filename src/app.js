@@ -181,7 +181,11 @@ let random;
 const choosing = () => {
   random = Math.floor(Math.random() * 31);
   let myInterval = setInterval(() => {
+<<<<<<< HEAD
     let audio = new Audio("../s.mp3");
+=======
+    let audio = new Audio("/../s.mp3");
+>>>>>>> 81e567aed17020bfd5e7577af1488e6dde4c1d7f
     audio.play();
     let preRandom = Math.floor(Math.random() * 29) + 1;
     let preRandom1 = Math.floor(Math.random() * 29) + 1;
