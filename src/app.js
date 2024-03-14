@@ -1,6 +1,7 @@
 const $ = document;
 const studentsWrapper = $.getElementById("studentsWrapper");
 
+const btnElem = $.getElementById("btnElem");
 const students = [
   {
     id: 1,
@@ -123,39 +124,90 @@ const students = [
     name: "موحدی",
   },
 ];
+const createStudents = () => {
+  const studentElements = [];
+  students.forEach((student) => {
+    const newStudentElement = document.createElement("div");
+    newStudentElement.id = student.id;
+    newStudentElement.classList.add(
+      "student",
+      "transition",
+      "ease-in-out",
+      "duration-300",
+      "rounded-xl",
+      "hover:shadow-lg",
+      "hover:shadow-yellow-500",
+      "hover:bg-yellow-600",
+      "bg-sky-800",
+      "p-3",
+      "text-xl",
+      "font-bold",
+      "text-white",
+    );
+    newStudentElement.innerHTML = student.name;
 
-students.forEach((student) => {
-  studentsWrapper.insertAdjacentHTML(
-    "beforeend",
-    `<div class="rounded-xl bg-yellow-500 p-3 text-xl font-bold text-white">
-    ${student.name}
-  </div>`,
-  );
-});
+    studentsWrapper.append(newStudentElement);
+    studentElements.push(newStudentElement);
+  });
 
+  return studentElements;
+};
 const selectStudentFunc = () => {
-  let random = Math.floor(Math.random() * 31);
-  if(random == 0) {
-    random++
-    let randomStudent = students.find((student) => {
-        return student.id == random;
-    });
-    console.log(random);
-  console.log(randomStudent);
-} else if(random == 31) {
-    random--
+  if (random == 0) {
+    random++;
     let randomStudent = students.find((student) => {
       return student.id == random;
     });
     console.log(random);
-  console.log(randomStudent);
+    console.log(randomStudent);
+  } else if (random == 31) {
+    random--;
+    let randomStudent = students.find((student) => {
+      return student.id == random;
+    });
+    console.log(random);
+    console.log(randomStudent);
   } else {
     let randomStudent = students.find((student) => {
-        return student.id == random;
-      });
-      console.log(random);
-  console.log(randomStudent);
+      return student.id == random;
+    });
+    console.log(random);
+    console.log(randomStudent);
   }
-  
 };
-selectStudentFunc();
+
+let studentElements = createStudents();
+let random;
+const choosing = () => {
+  random = Math.floor(Math.random() * 31);
+  let myInterval = setInterval(() => {
+    let audio = new Audio("./../s.mp3");
+    audio.play();
+    let preRandom = Math.floor(Math.random() * 29) + 1;
+    let preRandom1 = Math.floor(Math.random() * 29) + 1;
+    let preRandom2 = Math.floor(Math.random() * 29) + 1;
+    let preRandom3 = Math.floor(Math.random() * 29) + 1;
+    let preRandom4 = Math.floor(Math.random() * 29) + 1;
+    studentElements[preRandom].classList.add("selectedClass");
+    studentElements[preRandom1].classList.add("selectedClass");
+    studentElements[preRandom2].classList.add("selectedClass");
+    studentElements[preRandom3].classList.add("selectedClass");
+    studentElements[preRandom4].classList.add("selectedClass");
+
+    setTimeout(() => {
+      studentElements[preRandom].classList.remove("selectedClass");
+      studentElements[preRandom1].classList.remove("selectedClass");
+      studentElements[preRandom2].classList.remove("selectedClass");
+      studentElements[preRandom3].classList.remove("selectedClass");
+      studentElements[preRandom4].classList.remove("selectedClass");
+    }, 150);
+  }, 100);
+
+  setTimeout(() => {
+    clearInterval(myInterval);
+
+    let randomStudent = selectStudentFunc();
+    studentElements[random - 1].classList.add("selectedClass");
+  }, 2000);
+};
+btnElem.addEventListener("click", choosing);
