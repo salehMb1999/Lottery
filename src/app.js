@@ -160,7 +160,7 @@ const selectStudentFunc = () => {
     });
     console.log(random);
     console.log(randomStudent);
-  } else if (random == 31) {
+  } else if (random == 28) {
     random--;
     let randomStudent = students.find((student) => {
       return student.id == random;
@@ -179,15 +179,15 @@ const selectStudentFunc = () => {
 let studentElements = createStudents();
 let random;
 const choosing = () => {
-  random = Math.floor(Math.random() * 31);
+  random = Math.floor(Math.random() * 28);
   let myInterval = setInterval(() => {
     let audio = new Audio("../s.mp3");
     audio.play();
-    let preRandom = Math.floor(Math.random() * 29) + 1;
-    let preRandom1 = Math.floor(Math.random() * 29) + 1;
-    let preRandom2 = Math.floor(Math.random() * 29) + 1;
-    let preRandom3 = Math.floor(Math.random() * 29) + 1;
-    let preRandom4 = Math.floor(Math.random() * 29) + 1;
+    let preRandom = Math.floor(Math.random() * 26) + 1;
+    let preRandom1 = Math.floor(Math.random() * 26) + 1;
+    let preRandom2 = Math.floor(Math.random() * 26) + 1;
+    let preRandom3 = Math.floor(Math.random() * 26) + 1;
+    let preRandom4 = Math.floor(Math.random() * 26) + 1;
     studentElements[preRandom].classList.add("selectedClass");
     studentElements[preRandom1].classList.add("selectedClass");
     studentElements[preRandom2].classList.add("selectedClass");
